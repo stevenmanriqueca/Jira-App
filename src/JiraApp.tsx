@@ -1,6 +1,8 @@
+import { AppRouter } from "./router/AppRouter"
+
 const JiraApp = () => {
     return (
-        <div>JiraApp</div>
+        <AppRouter />
     )
 }
 
