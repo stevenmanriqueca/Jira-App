@@ -1,6 +1,11 @@
-const AuthPage = () => {
+import { FC } from 'react';
+import { AuthContainer } from "../containers"
+
+const AuthPage: FC = () => {
     return (
-        <div>AuthPage</div>
+        <AuthContainer>
+            <div>AuthPage</div>
+        </AuthContainer>
     )
 }
 
