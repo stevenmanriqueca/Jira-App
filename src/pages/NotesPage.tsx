@@ -1,4 +1,6 @@
-const NotesPage = () => {
+import { FC } from 'react';
+
+const NotesPage: FC = () => {
   return (
     <div>NotesPage</div>
   )
