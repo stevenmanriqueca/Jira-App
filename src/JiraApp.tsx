@@ -1,11 +1,16 @@
+import { useState } from "react"
 import { UserProvider } from "./context/User/UserProvider"
-import { AppRouter } from "./router/AppRouter"
+import { AuthRouter, MainRouter } from "./router"
 import "./styles/globals.css"
 
+
 const JiraApp = () => {
+    const [isAuth, setisAuth] = useState(true)
     return (
         <UserProvider>
-            <AppRouter />
+            {
+                isAuth === true ? <MainRouter /> : <AuthRouter />
+            }
         </UserProvider>
     )
 }
