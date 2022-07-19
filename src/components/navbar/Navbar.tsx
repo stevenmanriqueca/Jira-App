@@ -1,10 +1,27 @@
-import { AppBar, Toolbar, Typography } from "@mui/material"
+import { AppBar, IconButton, Toolbar } from "@mui/material";
+import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined';
+import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
+import { StyledAvatar, StyledTitle } from "../../styles/components";
 
 export const Navbar = () => {
     return (
-        <AppBar>
+        <AppBar position="static">
             <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexgrow: 1 }} >Jira</Typography>
+                <StyledTitle variant="h5">
+                    Jira - App
+                </StyledTitle>
+
+                <StyledAvatar>
+                    <IconButton size="large" aria-haspopup="true" sx={{ color: "primary.dark" }}>
+                        <TipsAndUpdatesOutlinedIcon />
+                    </IconButton>
+                </StyledAvatar>
+
+                <StyledAvatar>
+                    <IconButton size="large" aria-haspopup="true" sx={{ color: "primary.dark" }}>
+                        <TextSnippetOutlinedIcon />
+                    </IconButton>
+                </StyledAvatar>
             </Toolbar>
         </AppBar>
     )
