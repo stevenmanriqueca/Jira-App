@@ -8,7 +8,8 @@ interface Props {
 export const HomeContainer: FC<Props> = ({ children }) => {
     return (
         <Paper elevation={4} sx={{
-            m: 1.8, backgroundColor: "primary.main",
+            m: 1.8, 
+            backgroundColor: "primary.light",
             width: "98vw",
             height: "86vh"
         }}>
