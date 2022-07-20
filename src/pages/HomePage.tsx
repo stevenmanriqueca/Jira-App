@@ -1,8 +1,11 @@
 import { FC } from 'react';
+import { HomeContainer } from '../containers';
 
 const HomePage: FC = () => {
     return (
-        <div>HomePage</div>
+        <HomeContainer>
+            <div>HomePage</div>
+        </HomeContainer>
     )
 }
 
