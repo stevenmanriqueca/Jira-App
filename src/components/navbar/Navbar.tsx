@@ -1,4 +1,4 @@
-import { AppBar, IconButton, Toolbar } from "@mui/material";
+import { AppBar, IconButton, Toolbar, Tooltip } from "@mui/material";
 import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined';
 import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
 import { StyledAvatar, StyledTitle } from "../../styles/components";
@@ -11,17 +11,21 @@ export const Navbar = () => {
                     Jira - App
                 </StyledTitle>
 
-                <StyledAvatar>
-                    <IconButton size="large" aria-haspopup="true" sx={{ color: "primary.dark" }}>
-                        <TipsAndUpdatesOutlinedIcon />
-                    </IconButton>
-                </StyledAvatar>
+                <Tooltip title="Jira" arrow>
+                    <StyledAvatar>
+                        <IconButton size="large" aria-haspopup="true" sx={{ color: "primary.dark" }}>
+                            <TipsAndUpdatesOutlinedIcon />
+                        </IconButton>
+                    </StyledAvatar>
+                </Tooltip>
 
-                <StyledAvatar>
-                    <IconButton size="large" aria-haspopup="true" sx={{ color: "primary.dark" }}>
-                        <TextSnippetOutlinedIcon />
-                    </IconButton>
-                </StyledAvatar>
+                <Tooltip title="Notes" arrow>
+                    <StyledAvatar>
+                        <IconButton size="large" aria-haspopup="true" sx={{ color: "primary.dark" }}>
+                            <TextSnippetOutlinedIcon />
+                        </IconButton>
+                    </StyledAvatar>
+                </Tooltip>
             </Toolbar>
         </AppBar>
     )
