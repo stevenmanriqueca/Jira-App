@@ -12,7 +12,10 @@ export interface UserData {
   name: string;
   columnsJira: string[];
   token: string;
+  status: userStatus
 }
+
+type userStatus = | "Authorized" | "unAuthorized"
 
 export interface Login {
   email: string;
