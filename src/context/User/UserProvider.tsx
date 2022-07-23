@@ -1,10 +1,9 @@
 import { ReactNode, useReducer } from 'react';
+import { useSnackbar } from 'notistack';
 import { UserContext } from './UserContext';
 import { userReducer } from './userReducer';
-import { State } from '../../interfaces/context-user';
-import { useSnackbar } from 'notistack';
 import jiraApi from '../../api/jiraApi';
-import { Login, UserData, Register } from '../../interfaces/context-user/index';
+import { State, Login, UserData, Register } from '../../interfaces/context-user';
 
 const initialState: State = {
   user: {
@@ -12,6 +11,7 @@ const initialState: State = {
     name: '',
     columnsJira: [],
     token: '',
+    status: "unAuthorized",
   },
   ui: {
     toggleLoading: false,
@@ -31,6 +31,7 @@ export const UserProvider = ({ children }: Props) => {
       dispatch({ type: "toggleLoading" })
       const { data } = await jiraApi.post<UserData>('/user', { email, password });
       dispatch({ type: 'userLogin', payload: data });
+      localStorage.setItem("token", data.token)
       enqueueSnackbar(`Welcome ${data.name}.`, { variant: "success" })
     } catch (error) {
       enqueueSnackbar("Email or Password incorrect.", { variant: "error" })
@@ -45,12 +46,21 @@ export const UserProvider = ({ children }: Props) => {
       const { data } = await jiraApi.post<UserData>('/user/register', { email, name, password });
       dispatch({ type: 'registerUser', payload: data });
       enqueueSnackbar(`Welcome ${data.name}.`, { variant: "success" })
+      localStorage.setItem("token", data.token)
     } catch (error) {
-      dispatch({ type: "toggleLoading" })
       enqueueSnackbar("An error has ocurred, Please try again.", { variant: "error" })
     } finally {
       dispatch({ type: "toggleLoading" })
     }
+  }
+
+  const renewToken = (data: UserData) => {
+    dispatch({ type: "userLogin", payload: data })
+  }
+
+  const onLogout = () => {
+    console.log("logout")
+    dispatch({ type: "onLogout" })
   }
 
   return (
@@ -59,6 +69,8 @@ export const UserProvider = ({ children }: Props) => {
         state,
         loginUser,
         registerUser,
+        renewToken,
+        onLogout,
       }}
     >
       {children}
