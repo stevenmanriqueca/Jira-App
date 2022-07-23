@@ -1,7 +1,8 @@
-import { useContext, useState } from "react";
-import { Stack, TextField, Button } from "@mui/material";
+import { FC, useState } from "react";
+import { Stack, TextField } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { useAuth } from '../../hooks/useAuth';
 import { useForm } from "react-hook-form";
-import { UserContext } from "../../context/User/UserContext";
 import { PasswordAdornment } from "../ui";
 
 type FormData = {
@@ -9,11 +10,11 @@ type FormData = {
   password: string;
 };
 
-export const LoginTabContent = (): JSX.Element => {
+export const LoginTabContent: FC = () => {
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const { loginUser } = useContext(UserContext);
+  const { loginUser, toggleLoading: isLoading } = useAuth()
 
   const { register, formState: { errors }, handleSubmit } = useForm<FormData>();
 
@@ -34,6 +35,7 @@ export const LoginTabContent = (): JSX.Element => {
               message: "The email is incorrect",
             },
           })}
+          disabled={isLoading}
           helperText={String(errors.email?.message || "")}
           error={Boolean(errors?.email)}
           autoComplete="off"
@@ -51,6 +53,7 @@ export const LoginTabContent = (): JSX.Element => {
           })}
           helperText={String(errors.password?.message || "")}
           error={Boolean(errors?.password)}
+          disabled={isLoading}
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -58,9 +61,9 @@ export const LoginTabContent = (): JSX.Element => {
             ),
           }}
         />
-        <Button variant="contained" onClick={handleSubmit(onSubmit)} type="submit">
+        <LoadingButton loading={isLoading} variant="contained" onClick={handleSubmit(onSubmit)} type="submit">
           Login
-        </Button>
+        </LoadingButton>
       </Stack>
     </form>
   );
