@@ -1,8 +1,18 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/User/UserContext';
 
 export const useAuth = () => {
+
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
     const { loginUser, registerUser, state } = useContext(UserContext)
-    const { user, ui: { toggleLoading } } = state
-    return { loginUser, registerUser, toggleLoading }
+    const { user: { id }, ui: { toggleLoading } } = state
+
+    useEffect(() => {
+        if (id) {
+            setIsAuthenticated(true)
+        }
+    }, [id])
+
+
+    return { loginUser, registerUser, toggleLoading, isAuthenticated }
 }
