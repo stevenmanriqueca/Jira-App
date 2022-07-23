@@ -4,10 +4,7 @@ export interface State {
 }
 
 interface UI {
-  loading: boolean;
-  error: {
-    message: string;
-  };
+  toggleLoading: boolean;
 }
 
 export interface UserData {
