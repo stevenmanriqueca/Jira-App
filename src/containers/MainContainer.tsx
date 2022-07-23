@@ -1,12 +1,18 @@
+import { useEffect } from "react"
 import { useAuth } from "../hooks/useAuth"
 import { MainRouter, AuthRouter } from "../router"
 
 export const MainContainer = () => {
-    const { isAuthenticated } = useAuth()
+    const { checkAuthToken, status } = useAuth()
+
+    useEffect(() => {
+        checkAuthToken()
+    }, [])
+
     return (
         <>
             {
-                isAuthenticated ? <MainRouter /> : <AuthRouter />
+                status === "Authorized" ? <MainRouter /> : <AuthRouter />
             }
         </>
     )
