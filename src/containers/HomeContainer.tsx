@@ -9,7 +9,7 @@ export const HomeContainer: FC<Props> = ({ children }) => {
     return (
         <Paper elevation={4} sx={{
             m: 1.8,
-            height: "100vh",
+            height: "100%",
         }}>
             {children}
         </Paper>
