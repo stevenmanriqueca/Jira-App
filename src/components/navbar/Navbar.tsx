@@ -1,6 +1,5 @@
 import { AppBar, IconButton, Toolbar, Tooltip } from "@mui/material";
-import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined';
-import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { StyledAvatar, StyledTitle } from "../../styles/components";
 
 export const Navbar = () => {
@@ -11,18 +10,10 @@ export const Navbar = () => {
                     Jira - App
                 </StyledTitle>
 
-                <Tooltip title="Jira" arrow>
+                <Tooltip title="Logout" arrow>
                     <StyledAvatar>
-                        <IconButton size="large" aria-haspopup="true" sx={{ color: "primary.main" }}>
-                            <TipsAndUpdatesOutlinedIcon />
-                        </IconButton>
-                    </StyledAvatar>
-                </Tooltip>
-
-                <Tooltip title="Notes" arrow>
-                    <StyledAvatar>
-                        <IconButton size="large" aria-haspopup="true" sx={{ color: "primary.main" }}>
-                            <TextSnippetOutlinedIcon />
+                        <IconButton size="large" aria-haspopup="true" color="error">
+                            <LogoutOutlinedIcon />
                         </IconButton>
                     </StyledAvatar>
                 </Tooltip>
