@@ -1,10 +1,11 @@
-import { UserData, StateUser } from '../../interfaces/context-user/index';
+import { UserData, StateUser } from '../../interfaces/context/user/index';
 
 type userAction =
   | { type: 'userLogin', payload: UserData }
   | { type: "registerUser", payload: UserData }
   | { type: "renewTokenUser", payload: string }
   | { type: "addNewColumn", payload: string[] }
+  | { type: "deleteColumn", payload: string }
   | { type: "onLogout" }
 
 export const userReducer = (state: StateUser, action: userAction): StateUser => {
@@ -28,6 +29,15 @@ export const userReducer = (state: StateUser, action: userAction): StateUser => 
         user: {
           ...state.user,
           columnsJira: [...state.user.columnsJira, ...action.payload]
+        }
+      }
+
+    case "deleteColumn":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          columnsJira: state.user.columnsJira.filter((nameColumn) => nameColumn !== action.payload)
         }
       }
 
