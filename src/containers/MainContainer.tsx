@@ -1,12 +1,12 @@
 import { useEffect } from "react"
 import { BackdropLoading } from "../components/ui"
-// import { JiraProvider } from "../context/Jira/JiraProvider"
+import { EntriesProvider } from "../context/Entries/EntriesProvider"
+import { ModalProvider } from "../context/Modal/ModalProvider"
 import { useAuth } from "../hooks/useAuth"
 import { MainRouter, AuthRouter } from "../router"
 
 export const MainContainer = () => {
     const { checkAuthToken, status, isValidating } = useAuth()
-
 
     useEffect(() => {
         checkAuthToken()
@@ -22,9 +22,11 @@ export const MainContainer = () => {
         <>
             {
                 status === "Authorized" ? (
-                    // <JiraProvider>
-                    <MainRouter />
-                    // </JiraProvider>
+                    <EntriesProvider>
+                        <ModalProvider>
+                            <MainRouter />
+                        </ModalProvider>
+                    </EntriesProvider>
                 ) : <AuthRouter />
             }
         </>
