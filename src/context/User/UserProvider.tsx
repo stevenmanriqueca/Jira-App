@@ -3,7 +3,7 @@ import { useSnackbar } from 'notistack';
 import { UserContext } from './UserContext';
 import { userReducer } from './userReducer';
 import jiraApi from '../../api/jiraApi';
-import { StateUser, Login, UserData, Register } from '../../interfaces/context-user';
+import { StateUser, Login, UserData, Register } from '../../interfaces/context/user';
 
 const initialState: StateUser = {
   user: {
@@ -56,9 +56,22 @@ export const UserProvider = ({ children }: Props) => {
     }
   }
 
+  const deleteColumn = async (idUser: string, nameColumn: string) => {
+    try {
+      await jiraApi.post(`/user/addColumn/${idUser}`, { nameColumn })
+      dispatch({ type: "deleteColumn", payload: nameColumn })
+      enqueueSnackbar(`Column deleted!`, { variant: "success" })
+    } catch (error) {
+      enqueueSnackbar("An error has ocurred, Please try again.", { variant: "error" })
+    }
+  }
+
   const renewToken = (data: UserData) => dispatch({ type: "userLogin", payload: data })
 
-  const onLogout = () => dispatch({ type: "onLogout" })
+  const onLogout = () => {
+    dispatch({ type: "onLogout" })
+    localStorage.clear()
+  }
 
   return (
     <UserContext.Provider
@@ -68,6 +81,7 @@ export const UserProvider = ({ children }: Props) => {
         registerUser,
         renewToken,
         addNewColumn,
+        deleteColumn,
         onLogout,
       }}
     >
