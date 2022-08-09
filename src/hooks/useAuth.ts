@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { jiraApi } from '../api';
 import { UserContext } from '../context/User/UserContext';
-import { UserData } from '../interfaces/context-user/index';
+import { UserData } from '../interfaces/context/user/index';
 
 export const useAuth = () => {
 
@@ -17,10 +17,9 @@ export const useAuth = () => {
             renewToken(data)
         }
         catch (err) {
-            localStorage.clear()
             onLogout()
         }
     }
 
-    return { loginUser, registerUser, checkAuthToken, status, isValidating }
+    return { loginUser, registerUser, checkAuthToken, onLogout, status, isValidating }
 }
