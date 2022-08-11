@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { HomePage, AuthPage, NotesPage } from '../pages';
+import { HomePage, AuthPage } from '../pages';
 
 type JSXComponent = FC
 
