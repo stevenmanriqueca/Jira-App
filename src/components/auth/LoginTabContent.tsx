@@ -39,7 +39,6 @@ export const LoginTabContent: FC = () => {
           helperText={String(errors.email?.message || "")}
           error={Boolean(errors?.email)}
           autoComplete="off"
-          value="steven@example.com"
         />
         <TextField label="Password" variant="outlined" autoComplete="off"
           {...register("password", {
@@ -56,7 +55,6 @@ export const LoginTabContent: FC = () => {
           error={Boolean(errors?.password)}
           disabled={isSubmitting}
           type={showPassword ? "text" : "password"}
-          value="12345"
           InputProps={{
             endAdornment: (
               <PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword} />
