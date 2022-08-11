@@ -15,6 +15,12 @@ export interface Entry {
     user: string;
 }
 
+export interface EntryData extends Omit<Entry, "createdAt" | "position" | "user" | "userTags"> {
+    userTags: { title: string }[]
+}
+
+export interface newEntryData extends Omit<EntryData, "_id"> { }
+
 export interface UserTag {
     title: string;
     _id: string;
