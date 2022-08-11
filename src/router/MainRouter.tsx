@@ -1,10 +1,10 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Navbar } from '../components/navbar'
 import { mainRoutes } from './';
 
 const MainRouter = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Navbar />
             <Routes>
                 {
@@ -14,7 +14,7 @@ const MainRouter = () => {
                 }
                 <Route path="*" element={<Navigate replace to={mainRoutes[0].path} />} />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
