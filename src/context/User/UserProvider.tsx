@@ -58,7 +58,7 @@ export const UserProvider = ({ children }: Props) => {
 
   const deleteColumn = async (idUser: string, nameColumn: string) => {
     try {
-      await jiraApi.post(`/user/addColumn/${idUser}`, { nameColumn })
+      await jiraApi.post(`/user/deleteColumn/${idUser}`, { nameColumn })
       dispatch({ type: "deleteColumn", payload: nameColumn })
       enqueueSnackbar(`Column deleted!`, { variant: "success" })
     } catch (error) {
