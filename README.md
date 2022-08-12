@@ -6,7 +6,7 @@ Hello community, this application was created with [vite](https://vitejs.dev), t
 - Responsive Design
 - React Router Dom
 - [Material UI](https://mui.com/)
-- Styled components with from Material UI
+- Material UI styled components
 - Custom Hooks
 - [Drag and Drop](https://www.npmjs.com/package/react-beautiful-dnd)
 - Validations
